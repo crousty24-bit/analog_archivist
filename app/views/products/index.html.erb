@@ -46,11 +46,9 @@
 
   <section class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 pb-24 md:pb-32">
     <% if @products.any? %>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-14 md:gap-y-20 gap-x-8 lg:gap-x-12">
-        <% use_preview_layout = @selected_category.blank? && @sort == "featured" %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-y-14 md:gap-y-20 gap-x-8 lg:gap-x-12">
         <% @products.each do |product| %>
-          <% layout_class = use_preview_layout ? catalog_product_layout_class(product) : "" %>
-          <%= render "shared/product_card", product: product, layout_class: layout_class, variant: :catalog %>
+          <%= render "shared/product_card", product: product, variant: :catalog %>
         <% end %>
       </div>
     <% else %>

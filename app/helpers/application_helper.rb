@@ -21,14 +21,6 @@ module ApplicationHelper
       teaser: nil
     }
   }.freeze
-  CATALOG_PRODUCT_LAYOUTS = {
-    "victorian-feline-tower" => "",
-    "cosmic-voyager-1974" => "mt-12 md:mt-0",
-    "gilded-monarch-set" => "",
-    "admirals-beacon" => "mt-12 md:mt-0",
-    "palace-chaise" => "lg:col-start-2 lg:mt-16",
-    "cerulean-glass-lanterns" => "lg:col-start-4 lg:mt-4"
-  }.freeze
   FOOTER_LINKS = [
     { label: "Our Story", path: nil },
     { label: "Shipping Ledger", path: :shipping_ledger_path },
@@ -46,10 +38,6 @@ module ApplicationHelper
   def archive_price(amount_cents, strip_zero_cents: true)
     precision = strip_zero_cents && amount_cents.to_i % 100 == 0 ? 0 : 2
     number_to_currency(amount_cents.to_i / 100.0, precision: precision)
-  end
-
-  def catalog_product_layout_class(product)
-    CATALOG_PRODUCT_LAYOUTS.fetch(product.slug, "")
   end
 
   def cart_summary_totals(order, cart = current_cart)
