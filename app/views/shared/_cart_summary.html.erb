@@ -1,0 +1,75 @@
+<% totals = cart_summary_totals(order) %>
+<% cart_items = current_cart.cart_items.includes(product: :product_images).to_a %>
+
+<div class="bg-surface-container p-6 sm:p-8 shadow-sm lg:sticky lg:top-32">
+  <h3 class="font-headline text-2xl italic mb-8">Selected Curiosities</h3>
+
+  <div class="space-y-8 mb-10">
+    <% if cart_items.any? %>
+      <% cart_items.each do |cart_item| %>
+        <% product = cart_item.product %>
+        <div class="flex gap-4 sm:gap-6 items-start">
+          <%= link_to catalog_path(product), class: "w-20 h-20 sm:w-24 sm:h-24 bg-surface-container-highest overflow-hidden rounded-lg flex-shrink-0 shadow-inner" do %>
+            <%= image_tag product.card_image.remote_url, alt: product.card_image.alt_text.presence || product.title, class: "theme-cart-image w-full h-full object-cover opacity-90" %>
+          <% end %>
+
+          <div class="flex-grow">
+            <h4 class="font-headline italic text-xl leading-tight"><%= product.title %></h4>
+            <% if product.sku.present? %>
+              <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Item <%= product.sku %></p>
+            <% end %>
+
+            <div class="flex justify-between items-end mt-2 gap-4">
+              <p class="font-body text-sm">Qty: <%= format("%02d", cart_item.quantity) %></p>
+              <p class="font-headline italic text-xl text-primary"><%= archive_price(cart_item.line_total_cents, strip_zero_cents: false) %></p>
+            </div>
+
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <%= form_with url: cart_item_path(cart_item), method: :patch, class: "flex items-center gap-2" do |form| %>
+                <%= form.number_field :quantity, value: cart_item.quantity, min: 0, class: "w-16 bg-transparent border-b border-outline/40 focus:border-primary text-sm py-1" %>
+                <%= form.submit "Update", class: "font-label text-[10px] uppercase tracking-widest text-primary cursor-pointer" %>
+              <% end %>
+
+              <%= button_to "Remove", cart_item_path(cart_item), method: :delete, class: "font-label text-[10px] uppercase tracking-widest text-on-surface-variant cursor-pointer" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="rounded-lg border border-outline-variant/30 bg-surface-container-lowest p-6">
+        <p class="font-headline text-2xl italic mb-2">Your ledger is empty</p>
+        <p class="font-body text-sm text-on-surface-variant mb-4">
+          Add a curiosity from the catalogue before sealing the manifest.
+        </p>
+        <%= link_to "Browse Catalogue", catalog_index_path, class: "inline-flex bg-primary text-on-primary px-5 py-3 font-label text-xs uppercase tracking-widest rounded-sm" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="border-t border-outline-variant/40 pt-8 space-y-4">
+    <div class="flex justify-between font-body text-sm">
+      <span class="text-on-surface-variant">Archival Subtotal</span>
+      <span class="font-headline italic"><%= archive_price(totals[:subtotal_cents], strip_zero_cents: false) %></span>
+    </div>
+    <div class="flex justify-between font-body text-sm">
+      <span class="text-on-surface-variant">Logistics &amp; Carriage</span>
+      <span class="font-headline italic" data-shipping-ledger-target="shippingTotal"><%= archive_price(totals[:shipping_amount_cents], strip_zero_cents: false) %></span>
+    </div>
+    <div class="flex justify-between font-body text-sm">
+      <span class="text-on-surface-variant">Customary Duty (Tax)</span>
+      <span class="font-headline italic" data-shipping-ledger-target="taxTotal"><%= archive_price(totals[:tax_amount_cents], strip_zero_cents: false) %></span>
+    </div>
+    <div class="flex flex-col gap-2 pt-4 border-t border-outline-variant/40 sm:flex-row sm:justify-between sm:items-baseline">
+      <span class="font-headline text-2xl italic">Grand Total</span>
+      <span class="font-headline text-3xl sm:text-4xl italic text-primary" data-shipping-ledger-target="grandTotal"><%= archive_price(totals[:total_cents], strip_zero_cents: false) %></span>
+    </div>
+  </div>
+
+  <button class="w-full mt-10 sm:mt-12 bg-primary text-on-primary px-4 py-4 sm:py-5 rounded-sm font-headline italic text-lg sm:text-xl lg:text-2xl leading-tight whitespace-normal shadow-lg hover:bg-surface-tint transition-all active:scale-[0.98] duration-150 disabled:opacity-50 disabled:cursor-not-allowed" type="submit" form="shipping-ledger-form" <%= "disabled" if cart_items.empty? %>>
+    Finalize Order &amp; Seal Manifest
+  </button>
+
+  <p class="text-center font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-6 opacity-60">
+    All sales are final. Ships from London Archives.
+  </p>
+</div>

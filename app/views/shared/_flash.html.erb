@@ -1,0 +1,10 @@
+<% if notice.present? || alert.present? %>
+  <div class="max-w-screen-xl mx-auto px-6 md:px-8 pt-4">
+    <% if notice.present? %>
+      <p class="flash-message"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="flash-message flash-message-alert"><%= alert %></p>
+    <% end %>
+  </div>
+<% end %>

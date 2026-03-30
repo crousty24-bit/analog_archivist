@@ -1,0 +1,8 @@
+archivist:
+  email: archivist@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password123") %>
+
+collector:
+  email: collector@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password123") %>
+# column: value

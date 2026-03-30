@@ -1,0 +1,28 @@
+<footer class="bg-surface-container-highest full-width mt-16 sm:mt-20 pb-10 sm:pb-12 pt-12 sm:pt-16 border-t border-outline-variant/30">
+  <div class="flex flex-col items-center gap-8 px-4 sm:px-6 w-full max-w-screen-2xl mx-auto">
+    <div class="text-base sm:text-lg font-serif text-primary font-headline italic tracking-widest text-center">
+      <%= site_title %>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 md:gap-12 font-label text-xs uppercase tracking-widest text-center">
+      <% footer_links.each do |entry| %>
+        <% classes = "text-on-surface-variant hover:text-primary transition-opacity opacity-80 hover:opacity-100 underline" %>
+        <% if entry[:url].present? %>
+          <%= link_to entry[:label], entry[:url], class: classes %>
+        <% else %>
+          <span class="<%= classes %> cursor-default"><%= entry[:label] %></span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="flex space-x-5 sm:space-x-6 opacity-60 text-on-surface-variant">
+      <span class="material-symbols-outlined">public</span>
+      <span class="material-symbols-outlined">mail</span>
+      <span class="material-symbols-outlined">photo_camera</span>
+    </div>
+
+    <div class="text-on-surface font-body text-xs uppercase tracking-widest opacity-60 text-center">
+      &copy; 1924 The Analog Archivist - Purveyors of Fine Curiosities
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,45 @@
+<% variant ||= :catalog %>
+<% layout_class ||= "" %>
+
+<% if variant == :recent %>
+  <article class="group">
+    <%= link_to catalog_path(product), class: "bg-surface-container-lowest aspect-[3/4] overflow-hidden rounded-xl mb-6 shadow-sm group-hover:shadow-xl transition-shadow duration-500 block" do %>
+      <%= image_tag product.card_image.remote_url, alt: product.card_image.alt_text.presence || product.title, class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" %>
+    <% end %>
+
+    <h3 class="font-headline text-lg sm:text-xl italic mb-1"><%= product.title %></h3>
+    <% if product.subtitle.present? %>
+      <p class="font-label text-xs uppercase tracking-widest opacity-60 mb-3"><%= product.subtitle %></p>
+    <% end %>
+    <p class="text-primary font-headline italic text-lg"><%= archive_price(product.price_cents) %></p>
+  </article>
+<% else %>
+  <article class="group relative flex flex-col <%= layout_class %>">
+    <div class="aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg mb-6 relative">
+      <%= link_to catalog_path(product) do %>
+        <%= image_tag product.card_image.remote_url, alt: product.card_image.alt_text.presence || product.title, class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0" %>
+      <% end %>
+
+      <% if product.badge.present? %>
+        <div class="absolute top-4 right-4 bg-tertiary text-on-tertiary text-[10px] px-3 py-1 font-label uppercase tracking-tighter rounded-sm">
+          <%= product.badge %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex flex-col flex-grow">
+      <% if product.catalog_meta.present? %>
+        <span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-2"><%= product.catalog_meta %></span>
+      <% end %>
+      <h3 class="font-headline text-xl sm:text-2xl mb-2 group-hover:text-primary transition-colors"><%= product.title %></h3>
+      <% if product.short_description.present? %>
+        <p class="font-body text-sm text-on-surface-variant mb-5 line-clamp-2 italic"><%= product.short_description %></p>
+      <% end %>
+
+      <div class="mt-auto flex flex-col items-start gap-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+        <span class="font-headline text-xl sm:text-2xl text-on-surface"><%= archive_price(product.price_cents) %></span>
+        <%= link_to "View Details", catalog_path(product), class: "w-full sm:w-auto text-center bg-primary text-on-primary px-6 py-2 font-label text-xs uppercase tracking-wider rounded-sm hover:bg-primary-container transition-colors active:scale-95" %>
+      </div>
+    </div>
+  </article>
+<% end %>

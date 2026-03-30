@@ -1,0 +1,35 @@
+<header class="bg-surface-container theme-chrome-shadow sticky top-0 backdrop-blur-md z-40 transition-all duration-300 border-b border-outline-variant/20">
+  <nav class="flex justify-between items-center w-full px-4 sm:px-6 md:px-8 py-5 md:py-6 max-w-screen-2xl mx-auto gap-4">
+    <%= link_to site_title, root_path, class: "text-2xl md:text-3xl font-serif italic text-primary font-headline tracking-wide shrink-0" %>
+
+    <div class="hidden md:flex items-center space-x-6 lg:space-x-10">
+      <% navigation_categories.each do |category| %>
+        <% active = active_category_slug == category.slug %>
+        <%= link_to catalog_index_path(category: category.slug), class: [
+          "text-on-surface-variant hover:text-primary transition-colors font-label uppercase tracking-widest text-xs pb-1",
+          ("border-b-2 border-primary text-primary font-semibold" if active)
+        ].compact.join(" ") do %>
+          <%= category.name %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="flex items-center gap-3 md:gap-5 text-primary shrink-0">
+      <label class="sr-only" for="theme-preference">Theme preference</label>
+      <select id="theme-preference" name="theme_preference" class="theme-select w-[5.5rem] sm:w-28 text-[10px] sm:text-xs font-label uppercase tracking-widest" data-theme-select aria-label="Theme preference">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="system">System</option>
+      </select>
+
+      <%= link_to shipping_ledger_path, class: "relative hover:text-surface-tint transition-all duration-300 active:scale-95", aria: { label: "Basket" } do %>
+        <span class="material-symbols-outlined text-[22px] md:text-[24px]">shopping_basket</span>
+        <span class="absolute -top-2 -right-2 bg-tertiary text-on-tertiary text-[10px] min-w-4 h-4 px-1 flex items-center justify-center rounded-full <%= 'hidden' if cart_count.zero? %>"><%= cart_count %></span>
+      <% end %>
+
+      <%= link_to current_account_path, class: "hover:text-surface-tint transition-all duration-300 active:scale-95", aria: { label: "Archive Access" } do %>
+        <span class="material-symbols-outlined text-[22px] md:text-[24px]">account_circle</span>
+      <% end %>
+    </div>
+  </nav>
+</header>

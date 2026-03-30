@@ -1,0 +1,33 @@
+<% variant ||= :home %>
+
+<% if variant == :catalog %>
+  <section class="bg-surface-container py-24 border-t border-outline-variant/10">
+    <div class="max-w-screen-xl mx-auto px-8 flex flex-col items-center text-center">
+      <span class="font-label text-xs uppercase tracking-widest text-primary mb-4">Enter the Archive Ledger</span>
+      <h2 class="font-headline text-5xl mb-8">Join the inner circle of collectors.</h2>
+      <p class="font-body text-on-surface-variant max-w-lg mb-12 leading-relaxed">
+        Receive weekly updates on rare acquisitions before they reach the general public. We do not spam; we only curate.
+      </p>
+
+      <%= form_with model: NewsletterSubscription.new, url: newsletter_subscriptions_path, class: "w-full max-w-md flex flex-col gap-4" do |form| %>
+        <%= form.email_field :email, required: true, placeholder: "Your electronic correspondence address", class: "w-full bg-transparent border-b-2 border-outline/40 focus:border-primary px-4 py-3 font-body outline-none transition-all placeholder:italic placeholder:text-on-surface-variant" %>
+        <%= form.submit "Submit Entry", class: "w-full bg-secondary text-on-secondary py-4 font-label uppercase tracking-widest text-sm hover:opacity-90 transition-opacity cursor-pointer" %>
+      <% end %>
+    </div>
+  </section>
+<% else %>
+  <section class="py-32 px-8">
+    <div class="max-w-screen-md mx-auto text-center">
+      <span class="material-symbols-outlined text-primary text-5xl mb-6">history_edu</span>
+      <h2 class="font-headline text-5xl italic mb-6">The Ledger of Curiosities</h2>
+      <p class="text-body-md text-on-surface-variant mb-10 leading-relaxed italic">
+        Weekly missives on the history of mechanical play and the science of the feline climb. Join 4,000 other archivists.
+      </p>
+
+      <%= form_with model: NewsletterSubscription.new, url: newsletter_subscriptions_path, class: "flex flex-col md:flex-row gap-4" do |form| %>
+        <%= form.email_field :email, required: true, placeholder: "Your electronic address", class: "flex-grow bg-transparent border-0 border-b-2 border-outline/30 focus:border-primary focus:ring-0 font-body placeholder:text-on-surface-variant py-4 px-2" %>
+        <%= form.submit "Subscribe", class: "bg-on-background text-surface px-12 py-4 font-label uppercase tracking-widest text-xs hover:bg-primary transition-colors cursor-pointer" %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

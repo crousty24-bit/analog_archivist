@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Analog Archivist | Global Static Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..800&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4eadc;
+        --bg-strong: #ead7c2;
+        --panel: rgba(255, 250, 244, 0.78);
+        --panel-strong: #f7eee3;
+        --ink: #20180f;
+        --muted: #645141;
+        --line: rgba(99, 72, 46, 0.16);
+        --accent: #8a431d;
+        --accent-soft: #b4683b;
+        --accent-deep: #5b2711;
+        --shadow: 0 28px 80px rgba(44, 28, 15, 0.12);
+        --radius-xl: 32px;
+        --radius-lg: 22px;
+        --page-width: min(1320px, calc(100vw - 32px));
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Work Sans", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent 34%),
+          radial-gradient(circle at 80% 18%, rgba(199, 132, 83, 0.2), transparent 24%),
+          linear-gradient(180deg, #f9f1e6 0%, #f3e4d2 48%, #ead9c5 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+      }
+
+      .shell {
+        width: var(--page-width);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 14px;
+        font-size: 11px;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .section-title,
+      .hero-title,
+      .product-title,
+      .card-title {
+        font-family: "Newsreader", serif;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(18px);
+        background: rgba(249, 241, 230, 0.72);
+        border-bottom: 1px solid rgba(99, 72, 46, 0.12);
+      }
+
+      .site-header-inner {
+        width: var(--page-width);
+        margin: 0 auto;
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        font-family: "Newsreader", serif;
+        font-size: clamp(1.8rem, 2vw, 2.4rem);
+        font-style: italic;
+      }
+
+      .top-nav {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-size: 11px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .top-nav a {
+        padding-bottom: 4px;
+        border-bottom: 1px solid transparent;
+      }
+
+      .top-nav a:hover {
+        color: var(--accent-deep);
+        border-color: rgba(138, 67, 29, 0.32);
+      }
+
+      .hero {
+        padding: 56px 0 34px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .hero-copy,
+      .hero-aside,
+      .catalog-panel,
+      .product-panel,
+      .manifesto-panel,
+      .newsletter-panel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 42px clamp(24px, 4vw, 52px);
+      }
+
+      .hero-title {
+        margin: 0 0 22px;
+        font-size: clamp(3.8rem, 8vw, 7.5rem);
+        line-height: 0.94;
+      }
+
+      .hero-title em {
+        color: var(--accent);
+        font-style: italic;
+      }
+
+      .hero-copy p {
+        max-width: 54ch;
+        margin: 0 0 26px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.85;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button,
+      .button-ghost,
+      .inline-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .button {
+        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+        color: #fff8f0;
+      }
+
+      .button-ghost {
+        border: 1px solid rgba(99, 72, 46, 0.18);
+        background: rgba(255, 255, 255, 0.46);
+        color: var(--accent-deep);
+      }
+
+      .hero-aside {
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+      }
+
+      .hero-image {
+        min-height: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .hero-note {
+        display: grid;
+        gap: 12px;
+        padding: 22px 24px 24px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.64));
+      }
+
+      .hero-note strong,
+      .catalog-highlight h3,
+      .product-spec-head,
+      .manifesto-item h3 {
+        font-family: "Newsreader", serif;
+        font-size: 1.45rem;
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      .hero-note p,
+      .catalog-highlight p,
+      .manifesto-item p,
+      .newsletter-panel p,
+      .product-summary {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .category-ribbon {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin: 20px auto 0;
+      }
+
+      .category-pill {
+        padding: 18px 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.44);
+      }
+
+      .category-pill strong {
+        display: block;
+        font-family: "Newsreader", serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        font-weight: 500;
+      }
+
+      .category-pill small {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .section {
+        padding: 36px 0;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        margin: 0;
+        font-size: clamp(2.4rem, 5vw, 4.4rem);
+        line-height: 0.98;
+      }
+
+      .section-kicker {
+        max-width: 48ch;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 24px;
+      }
+
+      .catalog-panel {
+        padding: 28px;
+      }
+
+      .catalog-filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 18px;
+      }
+
+      .catalog-filter {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .catalog-filter.is-active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+
+      .catalog-highlight {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--panel-strong);
+      }
+
+      .catalog-highlight img {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .catalog-highlight-copy {
+        padding: 20px 22px 22px;
+      }
+
+      .product-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        display: grid;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(255, 251, 247, 0.74);
+        overflow: hidden;
+      }
+
+      .card-media {
+        position: relative;
+      }
+
+      .card-media img {
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+
+      .card-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: rgba(91, 39, 17, 0.92);
+        color: #fff;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .card-body {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+      }
+
+      .card-meta {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .card-title {
+        margin: 0;
+        min-height: 2.4em;
+        font-size: 1.72rem;
+        line-height: 1.02;
+      }
+
+      .card-copy {
+        margin: 0;
+        min-height: 4.8em;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .card-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .card-price {
+        font-family: "Newsreader", serif;
+        font-size: 1.8rem;
+        font-style: italic;
+      }
+
+      .product-stage {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+        gap: 24px;
+      }
+
+      .product-gallery {
+        display: grid;
+        gap: 16px;
+      }
+
+      .product-hero {
+        overflow: hidden;
+        border-radius: 30px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.32);
+        box-shadow: var(--shadow);
+      }
+
+      .product-hero img {
+        aspect-ratio: 5 / 6;
+        object-fit: cover;
+      }
+
+      .product-thumbs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product-thumbs img {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+      }
+
+      .product-panel {
+        padding: clamp(24px, 3vw, 38px);
+        display: grid;
+        gap: 18px;
+        align-self: start;
+      }
+
+      .product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .product-tag {
+        padding: 9px 12px;
+        border-radius: 999px;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--line);
+      }
+
+      .product-title {
+        margin: 0;
+        font-size: clamp(2.8rem, 5vw, 4.8rem);
+        line-height: 0.95;
+      }
+
+      .product-quote {
+        margin: 0;
+        font-family: "Newsreader", serif;
+        font-size: 1.45rem;
+        line-height: 1.55;
+        font-style: italic;
+        color: rgba(32, 24, 15, 0.86);
+      }
+
+      .product-identity {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .identity-box {
+        padding: 15px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid var(--line);
+      }
+
+      .identity-label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .identity-value {
+        font-family: "Newsreader", serif;
+        font-size: 1.1rem;
+      }
+
+      .product-specs {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border-radius: 20px;
+        background: rgba(234, 215, 194, 0.46);
+        border: 1px solid var(--line);
+      }
+
+      .product-spec-head {
+        margin-bottom: 4px;
+      }
+
+      .spec-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(99, 72, 46, 0.12);
+      }
+
+      .spec-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .spec-row span:first-child {
+        color: var(--muted);
+      }
+
+      .product-buy {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding-top: 4px;
+      }
+
+      .product-price {
+        font-family: "Newsreader", serif;
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .product-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .manifesto-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .manifesto-panel {
+        padding: 22px;
+      }
+
+      .manifesto-item {
+        padding: 20px;
+        min-height: 100%;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.46);
+        border: 1px solid var(--line);
+      }
+
+      .newsletter-panel {
+        padding: clamp(24px, 3vw, 40px);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 22px;
+        align-items: end;
+      }
+
+      .newsletter-form {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .newsletter-input {
+        flex: 1 1 280px;
+        min-height: 54px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.74);
+        font: inherit;
+        color: var(--ink);
+      }
+
+      .site-footer {
+        padding: 28px 0 54px;
+        color: var(--muted);
+      }
+
+      .site-footer-inner {
+        width: var(--page-width);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        border-top: 1px solid rgba(99, 72, 46, 0.16);
+        padding-top: 22px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 1080px) {
+        .hero-grid,
+        .catalog-grid,
+        .product-stage,
+        .newsletter-panel,
+        .manifesto-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .newsletter-panel {
+          align-items: start;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-header-inner {
+          padding: 14px 0;
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .hero {
+          padding-top: 26px;
+        }
+
+        .hero-copy,
+        .catalog-panel,
+        .product-panel,
+        .manifesto-panel,
+        .newsletter-panel {
+          border-radius: 24px;
+        }
+
+        .category-ribbon,
+        .product-list,
+        .product-identity,
+        .product-thumbs {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head,
+        .product-buy {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .newsletter-form {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <a class="brand" href="#top">The Analog Archivist</a>
+          <nav class="top-nav" aria-label="Primary">
+            <a href="#direction">Direction</a>
+            <a href="#catalogue">Catalogue</a>
+            <a href="#product">Product</a>
+            <a href="#delivery">Delivery</a>
+            <a href="#newsletter">Ledger</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="shell hero-grid">
+            <article class="hero-copy">
+              <span class="eyebrow">Global static direction</span>
+              <h1 class="hero-title">
+                An e-commerce that reads like an
+                <em>archive catalogue</em>, not a commodity feed.
+              </h1>
+              <p>
+                This single-file mockup reframes the brand around editorial hierarchy,
+                tactile surfaces, warmer contrast, and a clearer relationship between
+                catalogue browsing, object detail, and collector reassurance.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#catalogue">Open Catalogue View</a>
+                <a class="button-ghost" href="#product">Inspect Product View</a>
+              </div>
+            </article>
+
+            <aside class="hero-aside">
+              <img
+                class="hero-image"
+                src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
+                alt="Collector interior with warm objects and archival atmosphere"
+              />
+              <div class="hero-note">
+                <span class="eyebrow">Why this direction</span>
+                <strong>Less storefront noise, more curated confidence.</strong>
+                <p>
+                  The concept prioritizes slower reading, stronger object framing,
+                  and clearer transitions between atmosphere, selection, and trust.
+                </p>
+              </div>
+            </aside>
+          </div>
+
+          <div class="shell category-ribbon" id="direction">
+            <article class="category-pill">
+              <strong>Cat Trees</strong>
+              <small>Architectural forms, not pet accessories.</small>
+            </article>
+            <article class="category-pill">
+              <strong>Pinball</strong>
+              <small>Mechanical theatre and lacquered cabinets.</small>
+            </article>
+            <article class="category-pill">
+              <strong>Trading Cards</strong>
+              <small>Paper artifacts with archival framing.</small>
+            </article>
+            <article class="category-pill">
+              <strong>Oil Lamps</strong>
+              <small>Atmospheric brass, glow and period presence.</small>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="catalogue">
+          <div class="shell">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Catalogue direction</span>
+                <h2 class="section-title">A catalogue that filters without feeling technical.</h2>
+              </div>
+              <p class="section-kicker">
+                The control rail is softened into an editorial side panel, while the
+                product cards keep a stable visual rhythm and a single, deliberate image role.
+              </p>
+            </div>
+
+            <div class="catalog-grid">
+              <section class="catalog-panel">
+                <div class="catalog-filter-row">
+                  <span class="catalog-filter is-active">All</span>
+                  <span class="catalog-filter">Cat Trees</span>
+                  <span class="catalog-filter">Pinball</span>
+                  <span class="catalog-filter">Trading Cards</span>
+                  <span class="catalog-filter">Oil Lamps</span>
+                </div>
+
+                <article class="catalog-highlight">
+                  <img
+                    src="https://images.unsplash.com/photo-1511401139252-f158d3209c17?auto=format&fit=crop&w=1200&q=80"
+                    alt="Close-up of a lacquered pinball cabinet"
+                  />
+                  <div class="catalog-highlight-copy">
+                    <span class="eyebrow">Shelf preview</span>
+                    <h3>The selected category gets a visual anchor.</h3>
+                    <p>
+                      Instead of presenting only controls, the catalogue surface gives
+                      the user a quick editorial cue about the active shelf.
+                    </p>
+                  </div>
+                </article>
+              </section>
+
+              <div class="product-list">
+                <article class="card">
+                  <div class="card-media">
+                    <img
+                      src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?auto=format&fit=crop&w=900&q=80"
+                      alt="Structured cat tower in warm wood"
+                    />
+                    <span class="card-badge">Unique piece</span>
+                  </div>
+                  <div class="card-body">
+                    <span class="card-meta">Cat Trees • Archive #4021</span>
+                    <h3 class="card-title">Victorian Feline Tower</h3>
+                    <p class="card-copy">
+                      Cabinet-grade timber, high perches, and a silhouette designed to
+                      read as furniture before it reads as pet equipment.
+                    </p>
+                    <div class="card-foot">
+                      <span class="card-price">$1,240</span>
+                      <a class="inline-link" href="#product">View details</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-media">
+                    <img
+                      src="https://images.unsplash.com/photo-1525772764200-be829a350797?auto=format&fit=crop&w=900&q=80"
+                      alt="Restored pinball machine in a dark room"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <span class="card-meta">Pinball • Archive #8892</span>
+                    <h3 class="card-title">Cosmic Voyager (1974)</h3>
+                    <p class="card-copy">
+                      Restored electromechanical cabinet with enough visual weight to
+                      carry the category on its own.
+                    </p>
+                    <div class="card-foot">
+                      <span class="card-price">$4,800</span>
+                      <a class="inline-link" href="#product">View details</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-media">
+                    <img
+                      src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80"
+                      alt="Leather folio with collectible cards"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <span class="card-meta">Trading Cards • Archive #1104</span>
+                    <h3 class="card-title">Imperial First Edition Set</h3>
+                    <p class="card-copy">
+                      Framed as archival ephemera instead of “collectible product”, with
+                      calmer copy density and cleaner price alignment.
+                    </p>
+                    <div class="card-foot">
+                      <span class="card-price">$850</span>
+                      <a class="inline-link" href="#product">View details</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-media">
+                    <img
+                      src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80"
+                      alt="Antique brass lamp with warm glass glow"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <span class="card-meta">Oil Lamps • Archive #3321</span>
+                    <h3 class="card-title">The Admiral's Beacon</h3>
+                    <p class="card-copy">
+                      The category stays atmospheric without drifting into decorative clutter
+                      or losing card consistency.
+                    </p>
+                    <div class="card-foot">
+                      <span class="card-price">$320</span>
+                      <a class="inline-link" href="#product">View details</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="product">
+          <div class="shell">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Product direction</span>
+                <h2 class="section-title">A detail page that behaves like a record sheet.</h2>
+              </div>
+              <p class="section-kicker">
+                The right rail becomes calmer and more legible: identity first, technical
+                data second, transaction third. The product remains readable before scroll.
+              </p>
+            </div>
+
+            <div class="product-stage">
+              <section class="product-gallery">
+                <div class="product-hero">
+                  <img
+                    src="https://images.unsplash.com/photo-1525772764200-be829a350797?auto=format&fit=crop&w=1200&q=80"
+                    alt="Large restored pinball machine in a collector room"
+                  />
+                </div>
+                <div class="product-thumbs">
+                  <img
+                    src="https://images.unsplash.com/photo-1511401139252-f158d3209c17?auto=format&fit=crop&w=700&q=80"
+                    alt="Pinball backglass detail"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=700&q=80"
+                    alt="Mechanical playfield detail"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=700&q=80"
+                    alt="Warm collector room atmosphere"
+                  />
+                </div>
+              </section>
+
+              <aside class="product-panel">
+                <span class="eyebrow">Mechanical curiosities</span>
+                <div class="product-meta">
+                  <span class="product-tag">Collector Grade</span>
+                  <span class="product-tag">1 of 1 in Stock</span>
+                  <span class="product-tag">Archive No. #8892</span>
+                </div>
+                <h2 class="product-title">Cosmic Voyager (1974)</h2>
+                <p class="product-quote">
+                  “A mechanical symphony of reels, chimes and voltage hum. It rewards
+                  attention rather than impulse.”
+                </p>
+                <p class="product-summary">
+                  This direction gives the product page a stronger hierarchy: statement,
+                  context, identity, specifications, and only then transaction.
+                </p>
+
+                <div class="product-identity">
+                  <div class="identity-box">
+                    <span class="identity-label">Stock code</span>
+                    <span class="identity-value">PB-8892</span>
+                  </div>
+                  <div class="identity-box">
+                    <span class="identity-label">Movement</span>
+                    <span class="identity-value">Electromechanical</span>
+                  </div>
+                  <div class="identity-box">
+                    <span class="identity-label">Origin</span>
+                    <span class="identity-value">Private cellar collection</span>
+                  </div>
+                </div>
+
+                <section class="product-specs">
+                  <div class="product-spec-head">Technical ledger</div>
+                  <div class="spec-row">
+                    <span>Manufacturer</span>
+                    <span>Bally</span>
+                  </div>
+                  <div class="spec-row">
+                    <span>Restoration</span>
+                    <span>142 documented hours</span>
+                  </div>
+                  <div class="spec-row">
+                    <span>Audio</span>
+                    <span>Original chime system</span>
+                  </div>
+                  <div class="spec-row">
+                    <span>Condition</span>
+                    <span>Working, archive-ready</span>
+                  </div>
+                </section>
+
+                <div class="product-buy">
+                  <span class="product-price">$4,800</span>
+                  <div class="product-actions">
+                    <a class="button" href="#newsletter">Add to Basket</a>
+                    <a class="button-ghost" href="#delivery">Delivery Notes</a>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="delivery">
+          <div class="shell">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Collector reassurance</span>
+                <h2 class="section-title">Trust surfaces should feel intentional, not generic.</h2>
+              </div>
+              <p class="section-kicker">
+                Shipping, provenance and handling are part of the product experience.
+                They should not look like a detached support center.
+              </p>
+            </div>
+
+            <div class="manifesto-grid">
+              <section class="manifesto-panel">
+                <article class="manifesto-item">
+                  <span class="eyebrow">Packing</span>
+                  <h3>White-glove packaging logic</h3>
+                  <p>
+                    Mechanical objects, lighting and paper goods each get a distinct
+                    protective treatment. The interface should communicate that specificity.
+                  </p>
+                </article>
+              </section>
+
+              <section class="manifesto-panel">
+                <article class="manifesto-item">
+                  <span class="eyebrow">Provenance</span>
+                  <h3>Historical context as a conversion tool</h3>
+                  <p>
+                    Provenance should sit near the product narrative, not be buried behind
+                    account language. It legitimizes the object and the price.
+                  </p>
+                </article>
+              </section>
+
+              <section class="manifesto-panel">
+                <article class="manifesto-item">
+                  <span class="eyebrow">Checkout tone</span>
+                  <h3>Less form fatigue, more collector confidence</h3>
+                  <p>
+                    The current prototype already has coherent static cart logic. The visual
+                    next step is simplifying the ledger panels and reducing transaction noise.
+                  </p>
+                </article>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="newsletter">
+          <div class="shell">
+            <section class="newsletter-panel">
+              <div>
+                <span class="eyebrow">Collector ledger</span>
+                <h2 class="section-title">Keep the mailing surface quiet and credible.</h2>
+                <p>
+                  One field, one promise, one visual system. The signup should feel like a
+                  continuation of the archive, not a marketing component imported from another site.
+                </p>
+              </div>
+              <form class="newsletter-form">
+                <input
+                  class="newsletter-input"
+                  type="email"
+                  placeholder="collector@ledger.example"
+                  aria-label="Email address"
+                />
+                <button class="button" type="button">Record Entry</button>
+              </form>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <span>The Analog Archivist</span>
+          <span>Static concept board</span>
+          <span>Editorial commerce direction</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

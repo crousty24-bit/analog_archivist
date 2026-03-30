@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="light" data-theme-preference="system" lang="en">
+  <head>
+    <title><%= content_for(:title) || site_title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#fff8f3">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <script>
+      (() => {
+        const storageKey = "theme_preference";
+        const validPreferences = ["light", "dark", "system"];
+        const html = document.documentElement;
+        let storedPreference = null;
+        try {
+          storedPreference = window.localStorage.getItem(storageKey);
+        } catch (_error) {
+          storedPreference = null;
+        }
+        const preference = validPreferences.includes(storedPreference) ? storedPreference : "system";
+        const resolvedTheme = preference === "system"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : preference;
+        const themeColor = resolvedTheme === "dark" ? "#17110b" : "#fff8f3";
+
+        html.classList.remove("light", "dark");
+        html.classList.add(resolvedTheme);
+        html.dataset.themePreference = preference;
+        html.style.colorScheme = resolvedTheme;
+
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) themeMeta.setAttribute("content", themeColor);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag "tailwind", "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="<%= content_for(:body_class) || 'bg-background text-on-background font-body selection:bg-tertiary-fixed' %>">
+    <%= render "shared/site_header" %>
+    <%= render "shared/flash" %>
+    <%= yield %>
+    <%= render "shared/scroll_top_button" %>
+    <%= render "shared/site_footer" %>
+  </body>
+</html>
