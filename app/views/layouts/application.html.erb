@@ -3,7 +3,9 @@
   <head>
     <title><%= content_for(:title) || site_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="application-name" content="The Analog Archivist">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Analog Archivist">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#fff8f3">
     <%= csrf_meta_tags %>
@@ -46,6 +48,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <%= stylesheet_link_tag "tailwind", "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
